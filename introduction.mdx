@@ -1,71 +1,88 @@
 ---
 title: Introduction
-description: "Welcome to the home of your new documentation"
+description: "Welcome to Token, a library for building large language models without the bullsh*t."
 ---
-
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.svg"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.svg"
-  alt="Hero Dark"
-/>
 
 ## Setting up
 
-The first step to world-class documentation is setting up your editing environnments.
+```python
+pip install tkn
+```
 
-<CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
-  </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
+# Tokenizer
 
-## Make it yours
+### Overview
+
+The `Tokenizer` class is a convenient wrapper for tokenization tasks. It utilizes Hugging Face's Transformers library for the underlying tokenization.
+
+### Initialization
+
+```python
+tokenizer = Tokenizer(pretrained_model="bert-base-cased")
+```
+
+- **pretrained_model**: The name of the pretrained model to use for tokenization. Default is `"bert-base-cased"`.
+
+### Methods
+
+#### `tokenize`
+
+Tokenizes a given text.
+
+```python
+token_ids = tokenizer.tokenize(text, add_special_tokens=True)
+```
+
+- **text**: The text to tokenize.
+- **add_special_tokens**: Whether to add special tokens like `[CLS]` and `[SEP]`. Default is `True`.
+
+Returns a list of token IDs.
+
+#### `vocabulary_size`
+
+Returns the size of the vocabulary.
+
+```python
+vocab_size = tokenizer.vocabulary_size()
+```
+
+#### `sep_token_id`
+
+Returns the ID of the separator token (usually `[SEP]`).
+
+```python
+sep_id = tokenizer.sep_token_id()
+```
+
+#### `encode`
+
+Encodes a given text into token IDs with optional truncation and max length.
+
+```python
+encoded_text = tokenizer.encode(text, add_special_tokens=True, truncation=True, max_length=None)
+```
+
+- **text**: The text to encode.
+- **add_special_tokens**: Whether to add special tokens like `[CLS]` and `[SEP]`. Default is `True`.
+- **truncation**: Whether to truncate the text to fit the `max_length`. Default is `True`.
+- **max_length**: The maximum length for the text. If `None`, no truncation is applied.
+
+Returns a list of token IDs.
+
+#### `decode`
+
+Decodes a list of token IDs back into text.
+
+```python
+decoded_text = tokenizer.decode(token_ids)
+```
+
+- **token_ids**: The list of token IDs to decode.
+
+```
+
+
+## DataLoader
 
 Update your docs to your brand and add valuable content for the best user conversion.
-
-<CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
-  </Card>
-  <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
-  >
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/showcase"
-  >
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+```
